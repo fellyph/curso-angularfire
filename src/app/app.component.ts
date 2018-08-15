@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'cursos-app';
+  data: Observable<any[]>;
+  title = 'Angular fire';
+  constructor(af: AngularFirestore) {
+    this.data = af.collection('connected').valueChanges();
+  }
 }
